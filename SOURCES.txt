@@ -7,8 +7,7 @@ CryptoSocket/Crypto/__init__.py
 CryptoSocket/Crypto/Encrypter.py
 CryptoSocket/Crypto/Decrypter.py
 CryptoSocket/Crypto/RSA.py
-CryptoSocket/Crypto/Crypto.py
-CryptoSocket/tests/client.py
-CryptoSocket/tests/server.py
-CryptoSocket/tests/generate_key.py
-CryptoSocket/tests/ObjectToTransfer.py
+CryptoSocket/examples/client.py
+CryptoSocket/examples/server.py
+CryptoSocket/examples/generate_key.py
+CryptoSocket/examples/ObjectToTransfer.py

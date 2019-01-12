@@ -1,16 +1,13 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.8)
 project (CryptoSocket LANGUAGES CXX VERSION 1.0.0 DESCRIPTION "TCP/IP Client Server with RSA cryptography")
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE RELEASE)
-endif()
-
-if(MSVC)
-  add_definition(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS)
-endif()
-
+# Scorer version
+set (MAJOR    1)
+set (MINOR    0)
+set (REVISION 0)
+add_definitions (-DMAJOR=${MAJOR} -DMINOR=${MINOR} -DREVISION=${REVISION})
 
 #################################################################
 #                         SETTING VARIABLES                     #
