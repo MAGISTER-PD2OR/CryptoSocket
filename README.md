@@ -14,9 +14,8 @@
 </div>
 </a>
 
-# Random Walkers Simulator
-
-The Walkers toolbox provides a set of optimization algorithms and random walk process inspired by natural process and physical equations. The package also includes a set of common score functions (landscape) to study the characteristics of each walkers and the pro and cons of each optimization strategy.
+# CryptoSocket
+## TCP/IP Client Server with RSA cryptography
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
