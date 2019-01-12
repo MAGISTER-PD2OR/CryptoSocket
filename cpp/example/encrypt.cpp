@@ -15,7 +15,7 @@ static void show_usage()
 
 int main (int argc, char **argv)
 {
-  long unsigned int n, e, c;
+  long unsigned int n, e;
   std::string text, filename, keyfile, row;
 
   if(
