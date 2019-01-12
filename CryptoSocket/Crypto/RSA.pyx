@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# distutils: language = c++
+# distutils: sources = RSA.cpp
+# cython: language_level=2
 
 cimport cython
 from libcpp.memory cimport unique_ptr

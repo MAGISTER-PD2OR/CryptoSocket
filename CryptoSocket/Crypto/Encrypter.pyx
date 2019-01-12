@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# distutils: language = c++
+# distutils: sources = Encrypter.cpp
+# cython: language_level=3
 
 cimport cython
 from libcpp.vector cimport vector
