@@ -85,6 +85,6 @@ add_executable(decrypter ${EXAMPLE}/decrypt.cpp       ${SRC_DIR}/Decrypter.cpp)
 #                          INSTALLERS                           #
 #################################################################
 
-install(TARGETS keygen       DESTINATION ${CMAKE_SOURCE_DIR}/${OUT_DIR})
-install(TARGETS encrypter    DESTINATION ${CMAKE_SOURCE_DIR}/${OUT_DIR})
-install(TARGETS decrypter    DESTINATION ${CMAKE_SOURCE_DIR}/${OUT_DIR})
+install(TARGETS keygen       DESTINATION ${OUT_DIR})
+install(TARGETS encrypter    DESTINATION ${OUT_DIR})
+install(TARGETS decrypter    DESTINATION ${OUT_DIR})
