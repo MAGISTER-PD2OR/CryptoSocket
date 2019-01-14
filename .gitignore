@@ -143,3 +143,4 @@ __pycache__/
 [Oo]bj/
 [Dd]ep/
 *.egg-info/
+CryptoSocket/Crypto/*.cpp

@@ -69,6 +69,7 @@ class Socket():
       # Clean up the connection
       self.connection.close()
 
+    decoded = buff
     if dec:
       decoded = dec.decrypt(pickle.loads(buff)).encode('latin-1')
 
