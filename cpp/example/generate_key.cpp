@@ -1,3 +1,5 @@
+#define _GLIBCXX_USE_C99 1
+
 #include <RSA.h>
 #include <iostream>
 #include <fstream>
@@ -77,7 +79,7 @@ int main (int argc, char ** argv)
   }
 
   is.close();
-  is.open(priv);
+  is.open(priv.c_str());
 
   if (is.is_open())
   {

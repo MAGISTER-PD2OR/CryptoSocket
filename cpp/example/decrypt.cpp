@@ -1,3 +1,5 @@
+#define _GLIBCXX_USE_C99 1
+
 #include <Decrypter.h>
 #include <iostream>
 #include <string>
