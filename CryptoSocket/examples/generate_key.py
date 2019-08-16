@@ -1,46 +1,53 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from CryptoSocket.Crypto import RSA
-import argparse
-import sys
 import os
+import argparse
+from CryptoSocket.Crypto import RSA
+
+__package__ = 'RSA key generator'
+
+__author__  = ['Nico Curti',
+               'Alessandro Fabbri'
+               ]
+
+__email__ = ['nico.curit2@unibo.it',
+             'alessandro.fabbri27@unibo.it'
+             ]
+
+def parse_args ():
+
+  description = "RSA generate key"
+  parser = argparse.ArgumentParser(description = description)
+  parser.add_argument('-k', type=str, required=True,  dest='private', action='store', help='Private KeyFile')
+  parser.add_argument('-u', type=str, required=True,  dest='public',  action='store', help='Public  KeyFile')
+  parser.add_argument('-p', type=int, required=False, dest='p',       action='store', help='P value', default=73)
+  parser.add_argument('-q', type=int, required=False, dest='q',       action='store', help='Q value', default=11)
+
+  args = parser.parse_args()
+
+  args.private += '.priv'
+  args.public  += '.pub'
+
+  return args
 
 
 if __name__ == '__main__':
 
+  args = parse_args()
 
-  description = "RSA generate key"
-  parser = argparse.ArgumentParser(description = description)
-  parser.add_argument('-k', required=True,  dest='private', action='store', help='Private KeyFile')
-  parser.add_argument('-u', required=True,  dest='public',  action='store', help='Public  KeyFile')
-  parser.add_argument('-p', required=False, dest='p',       action='store', help='P value', default=73)
-  parser.add_argument('-q', required=False, dest='q',       action='store', help='Q value', default=11)
-
-  if len(sys.argv) <= 2:
-    parser.print_help()
-    sys.exit(1)
-  else:
-    args = parser.parse_args()
-
-  private = args.private
-  public  = args.public
-  p       = int(args.p)
-  q       = int(args.q)
-
-  private += '.priv'
-  public  += '.pub'
-
-  if os.path.exists(private):
+  if os.path.exists(args.private):
     raise UserWarning('Private keyfile already exists. Cannot override')
     exit(0)
 
-  if os.path.exists(public):
+  if os.path.exists(args.public):
     raise UserWarning('Public keyfile already exists. Cannot override')
     exit(0)
 
-  rsa = RSA(p, q)
+  rsa = RSA(args.p, args.q)
 
-  with open(public, 'w') as f:
-    f.write("%d %d"%(rsa.n, rsa.e))
-  with open(private, 'w') as f:
-    f.write("%d %d"%(rsa.n, rsa.d))
+  with open(args.public, 'w') as f:
+    f.write("{} {}".format(rsa.n, rsa.e))
+
+  with open(arg.sprivate, 'w') as f:
+    f.write("{} {}".format(rsa.n, rsa.d))

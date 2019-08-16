@@ -1,56 +1,37 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import numpy as np
+import warnings
 
-class RSA:
+from lib.Crypto.RSA import _rsa
 
-  def __init__(self, p, q):
-    self.p = p
-    self.q = q
+__package__ = 'RSA object'
 
-    if not self.is_prime(self.p):
-      raise UserWarning('p is not prime. Please insert a prime number')
-      exit(1)
+__author__  = ['Nico Curti',
+               'Alessandro Fabbri'
+               ]
 
-    if not self.is_prime(self.q):
-      raise UserWarning('p is not prime. Please insert a prime number')
-      exit(1)
+__email__ = ['nico.curit2@unibo.it',
+             'alessandro.fabbri27@unibo.it'
+             ]
 
-    self.n   = self.p * self.q
-    self.phi = (p - 1) * (q - 1)
+class RSA (object):
 
-    self.compute_public_key()
-    self.compute_private_key()
+  def __init__ (self, p, q):
 
-  def is_prime(self, n):
-    j = np.uint(np.sqrt(n))
-    for i in range(2, j + 1):
-      if n % i == 0:
-        return False
-    return True
+    if not isinstance(p, int) or not isinstance(q, int):
+      warnings.warn('P and Q are supposed to be integers.')
 
-  def compute_public_key(self):
-    i = 2
-    while True:
-      if self.phi % i == 0:
-        i += 1
-        continue
-      if self.is_prime(i):
-        self.e = i
-        break
-      i += 1
+    p, q = int(p), int(q)
 
-  def compute_private_key(self):
-    k = 1
-    while True:
-      k += self.phi
-      if k % self.e == 0:
-        self.d = k / self.e
-        break
+    self._obj = _rsa(p, q)
 
-  def __repr__(self):
-    fmt_str = "RSA params\n"
-    members = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
-    for m in members:
-      fmt_str += '    %s: %s\n'%(m, eval('self.%s'%m))
-    return fmt_str
+  @property
+  def public_key(self):
+    return self._obj.public_key
+
+
+  @property
+  def private_key(self):
+    return self._obj.private_key

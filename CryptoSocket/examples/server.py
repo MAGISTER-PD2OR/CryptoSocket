@@ -1,39 +1,42 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+import argparse
 from ObjectToTransfer import ObjectToTransfer
 from CryptoSocket import Socket
 from CryptoSocket.Crypto import Decrypter
 
-import argparse
-import sys
+__package__ = 'Server example'
 
-if __name__ == '__main__':
+__author__  = ['Nico Curti',
+               'Alessandro Fabbri'
+               ]
 
+__email__ = ['nico.curit2@unibo.it',
+             'alessandro.fabbri27@unibo.it'
+             ]
+
+def parse_args ():
 
   description = "Server script"
   parser = argparse.ArgumentParser(description = description)
-  parser.add_argument('-l', required=True,  dest='local_address',  action='store', help='Local Address')
-  parser.add_argument('-r', required=True,  dest='remote_address', action='store', help='Remote Address')
-  parser.add_argument('-a', required=True,  dest='local_port',     action='store', help='Local Port')
-  parser.add_argument('-t', required=True,  dest='remote_port',    action='store', help='Remote Port')
-  parser.add_argument('-k', required=False, dest='keyfile',        action='store', help='Private KeyFile', default='')
+  parser.add_argument('-l', type=str, required=True,  dest='local_address',  action='store', help='Local Address')
+  parser.add_argument('-r', type=str, required=True,  dest='remote_address', action='store', help='Remote Address')
+  parser.add_argument('-a', type=int, required=True,  dest='local_port',     action='store', help='Local Port')
+  parser.add_argument('-t', type=int, required=True,  dest='remote_port',    action='store', help='Remote Port')
+  parser.add_argument('-k', type=str, required=False, dest='keyfile',        action='store', help='Private KeyFile', default='')
 
-  if len(sys.argv) <= 4:
-    parser.print_help()
-    sys.exit(1)
-  else:
-    args = parser.parse_args()
+  args = parser.parse_args()
 
-  local_address = args.local_address
-  local_port    = int(args.local_port)
+  return args
 
-  remote_address = args.remote_address
-  remote_port    = int(args.remote_port)
 
-  keyfile  = args.keyfile
+if __name__ == '__main__':
 
-  if keyfile:
-    with open(keyfile, 'r') as f:
+  args = parse_args()
+
+  if args.keyfile:
+    with open(args.keyfile, 'r') as f:
       row = f.readline()
 
     n, d = tuple(map(int, row.split(' ')))
@@ -41,7 +44,7 @@ if __name__ == '__main__':
   else:
     dec = None
 
-  with Socket(local_address, local_port, remote_address, remote_port) as sock:
+  with Socket(args.local_address, args.local_port, args.remote_address, args.remote_port) as sock:
 
     try:
       while True:
