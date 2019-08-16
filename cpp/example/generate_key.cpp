@@ -68,7 +68,7 @@ int main (int argc, char ** argv)
   pub  = argv[1];
   priv = argv[2];
 
-  std :: ifstream is(pub);
+  std :: ifstream is (pub.c_str());
 
   if (is.is_open())
   {
@@ -98,7 +98,7 @@ int main (int argc, char ** argv)
     std :: exit(1);
   }
 
-  std :: ofstream os(pub);
+  std :: ofstream os (pub.c_str());
   os << rsa.n << " " << rsa.e << std :: endl;
   os.close();
   os.open(priv);

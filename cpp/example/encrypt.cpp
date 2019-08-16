@@ -73,7 +73,7 @@ int main (int argc, char ** argv)
   }
 
   // read keyfile
-  std :: ifstream key(keyfile);
+  std :: ifstream key (keyfile.c_str());
 
   if ( !key.is_open() )
   {
@@ -90,7 +90,7 @@ int main (int argc, char ** argv)
 
   if ( std :: string(argv[2]) == "-f" )
   {
-    std :: ifstream is(filename);
+    std :: ifstream is (filename.c_str());
 
     if ( !is.is_open() )
     {
@@ -100,7 +100,7 @@ int main (int argc, char ** argv)
 
     std :: string outfile = filename.substr(0, filename.find("."));
 
-    std :: ofstream out(outfile + ".rsa");
+    std :: ofstream out ((outfile + ".rsa").c_str());
 
     while ( std :: getline(is, text) )
     {
