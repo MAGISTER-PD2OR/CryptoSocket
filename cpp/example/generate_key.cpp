@@ -103,7 +103,7 @@ int main (int argc, char ** argv)
   std :: ofstream os (pub.c_str());
   os << rsa.n << " " << rsa.e << std :: endl;
   os.close();
-  os.open(priv);
+  os.open(priv.c_str());
   os << rsa.n << " " << rsa.d << std :: endl;
   os.close();
 
